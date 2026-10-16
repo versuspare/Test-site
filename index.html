@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +17,30 @@
 
   <!-- Contentsquare tracking script -->
   <script type="text/javascript">
-    window.addEventListener('DOMContentLoaded', function () {
-      var mt = document.createElement('script');
-      mt.async = true;
-      mt.src = "//t.contentsquare.net/uxa/fb27e64b6babd.js";
-      mt.type = "text/javascript";
-      document.getElementsByTagName('head')[0].appendChild(mt);
-    });
+    (function () {
+      window._uxa = window._uxa || [];
+
+      if (typeof CS_CONF === "undefined") {
+        window._uxa.push([
+          "setPath",
+          window.location.pathname +
+            window.location.hash.replace("#", "?__")
+        ]);
+
+        var mt = document.createElement("script");
+        mt.type = "text/javascript";
+        mt.async = true;
+        mt.src = "https://t.contentsquare.net/uxa/fb27e64b6babd.js";
+
+        document.getElementsByTagName("head")[0].appendChild(mt);
+      } else {
+        window._uxa.push([
+          "trackPageview",
+          window.location.pathname +
+            window.location.hash.replace("#", "?__")
+        ]);
+      }
+    })();
   </script>
 </head>
 <body>
@@ -38,3 +56,4 @@
   <p>Check out our <a href="products.html">products page</a> or learn more <a href="about.html">about us</a>.</p>
 </body>
 </html>
+
